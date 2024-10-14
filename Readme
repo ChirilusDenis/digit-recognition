@@ -1,0 +1,11 @@
+	For the first part of the assignment, the original photos had to be compressed for better efficiency.
+	
+	The first type of compression was based on the singular value decomposition. The image was factorised into the u, s, v transposed matrixes. After that, new matrixes were made with only the first k columns of the u matrix, the frist k rows and columns of the s matrix and the first k lines of v transposed. With these matrxes, an aproximation of the original image was made.
+	
+	The second type is based on principle component analysis. First the image matrix is normalized by subtracting the average of each row from eac row's components and a new matrix is build by dividing each element of the transposed matrix by the number of columns. Then, SVD is done again and only the first k columns of the V matrix are kept, these being the pinciple components of the V matrix, noted as W. After this, A is projected on the space built by the principle components and an aproximation of the image is calculated lastly.
+	The more principle components are taken into account, the closer the aproximation will be to the original image.
+	
+	 The next compression technique is based on eigen vallues and eigen vectros. First, the covariance matrix is calculated. Then, as principle components we use the frist k eigen vectros coresponding to the k biggest eigen values. The aproximation is built in the same way as the previous aproximaion technique.
+	 
+	 Now, for the prediction, a set of training images is loaded. The image we need to recognize needs to be in the same format as the training examples, so each pixels becomes the inverse of itself and all the pixels are put into one single row. Then, the last compression algorythm is applied on the training images.
+	 For the prediction, a new image, after processing, and after both the image and the training set are projected onto the PC space, is compared to the training data set. This comparison is done by determining the euclidian distance between the training data and the processed image. Then, from the trainig set, the possible labels corespond to the k closest training examples. And for the final prediction, the median of these is calculated.
